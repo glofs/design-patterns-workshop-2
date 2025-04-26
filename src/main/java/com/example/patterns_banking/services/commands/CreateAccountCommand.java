@@ -8,9 +8,10 @@ import com.example.patterns_banking.models.Customer;
 import com.example.patterns_banking.repositories.IAccountRepository;
 import com.example.patterns_banking.repositories.ICustomerRepository;
 
+import java.util.List;
 import java.util.Optional;
 
-public class CreateAccountCommand implements ICommand<Account> {
+public class CreateAccountCommand implements ICommand<Account> {//para crear cuenta necesitamos el account repository, el factory y el DTO
   private final IAccountRepository accountRepository;
   private final ICustomerRepository customerRepository;
   private final AccountFactoryProvider accountFactoryProvider;
@@ -36,4 +37,5 @@ public class CreateAccountCommand implements ICommand<Account> {
     Account account = accountFactory.createAccount(customer, accountDTO.getAccountNumber(), accountDTO.getBalance());
     return accountRepository.save(account);
   }
+
 }

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity(name = "accounts")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) //para que solo se persistan las Account en la DB
 public abstract class Account {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public abstract class Account {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "customer_id")
-  @JsonBackReference
+  @JsonBackReference //para evitar ciclos infinitos
   private Customer customer;
 
   public abstract Double calculateDepositFee(Double amount);
